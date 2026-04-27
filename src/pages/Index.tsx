@@ -164,7 +164,6 @@ const Index = () => {
       <MatrixRain />
 
       <div className="relative z-10 flex min-h-screen flex-col">
-        <ConsoleHeader />
 
         <main className="container relative flex-1 px-3 py-4 pb-[calc(env(safe-area-inset-bottom)+5.5rem)] sm:pb-6 sm:py-6 max-w-2xl">
           <h1
