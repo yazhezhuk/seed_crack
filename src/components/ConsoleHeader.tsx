@@ -15,10 +15,8 @@ export const ConsoleHeader = () => {
       <div className="container flex items-center justify-between py-2 text-[9px] sm:text-xs uppercase tracking-widest">
         <div className="flex items-center gap-1.5 sm:gap-2 text-primary text-glow-strong min-w-0">
           <span className="inline-block h-1.5 w-1.5 sm:h-2 sm:w-2 shrink-0 rounded-full bg-primary animate-pulse-glow" />
-          <span className="font-bold truncate">SEED://CRACKER</span>
-          <span className="hidden sm:inline text-muted-foreground">v0.4.2-beta</span>
+          <span className="font-bold truncate">t.me/mr_openchain</span>
         </div>
-        <div className="text-muted-foreground tabular-nums shrink-0 ml-2">{ts.slice(11)}<span className="hidden xs:inline">Z</span></div>
       </div>
     </header>
   );
