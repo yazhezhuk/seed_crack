@@ -1,0 +1,183 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ======================================================
+   SEED://CRACKER — Hacker Console Design System
+   All colors in HSL. Phosphor green CRT terminal vibe.
+   ====================================================== */
+
+@layer base {
+  :root {
+    --background: 140 30% 4%;
+    --foreground: 130 100% 70%;
+
+    --card: 140 30% 6%;
+    --card-foreground: 130 100% 70%;
+
+    --popover: 140 30% 6%;
+    --popover-foreground: 130 100% 70%;
+
+    --primary: 130 100% 55%;
+    --primary-foreground: 140 30% 4%;
+
+    --secondary: 140 25% 10%;
+    --secondary-foreground: 130 100% 70%;
+
+    --muted: 140 20% 9%;
+    --muted-foreground: 130 40% 45%;
+
+    --accent: 130 100% 50%;
+    --accent-foreground: 140 30% 4%;
+
+    --destructive: 0 100% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 130 60% 18%;
+    --input: 130 60% 14%;
+    --ring: 130 100% 55%;
+
+    --radius: 0.125rem;
+
+    /* Hacker console tokens */
+    --terminal-glow: 130 100% 55%;
+    --terminal-dim: 130 60% 30%;
+    --terminal-warn: 45 100% 55%;
+    --terminal-danger: 0 100% 60%;
+    --scanline: 130 100% 50%;
+
+    --gradient-crt: radial-gradient(
+      ellipse at center,
+      hsl(140 30% 6%) 0%,
+      hsl(140 40% 2%) 100%
+    );
+    --shadow-glow: 0 0 12px hsl(var(--terminal-glow) / 0.6),
+      0 0 32px hsl(var(--terminal-glow) / 0.25);
+    --shadow-text: 0 0 6px hsl(var(--terminal-glow) / 0.85);
+  }
+
+  .dark {
+    /* Same theme — always dark hacker style */
+    --background: 140 30% 4%;
+    --foreground: 130 100% 70%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html,
+  body,
+  #root {
+    @apply min-h-screen;
+  }
+
+  body {
+    @apply bg-background text-foreground font-mono;
+    background-image: var(--gradient-crt);
+    background-attachment: fixed;
+    text-shadow: var(--shadow-text);
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: hsl(var(--primary) / 0.4);
+    color: hsl(var(--foreground));
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--terminal-dim));
+    border-radius: 0;
+  }
+}
+
+@layer utilities {
+  /* CRT scanlines overlay */
+  .crt-scanlines::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 50;
+    background: repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 2px,
+      hsl(var(--scanline) / 0.05) 2px,
+      hsl(var(--scanline) / 0.05) 3px
+    );
+  }
+
+  .crt-scanlines::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 51;
+    background: radial-gradient(
+      ellipse at center,
+      transparent 60%,
+      hsl(140 40% 2% / 0.8) 100%
+    );
+  }
+
+  .text-glow {
+    text-shadow: var(--shadow-text);
+  }
+
+  .text-glow-strong {
+    text-shadow: 0 0 8px hsl(var(--terminal-glow)),
+      0 0 18px hsl(var(--terminal-glow) / 0.6);
+  }
+
+  .border-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .blink-cursor::after {
+    content: "▋";
+    margin-left: 2px;
+    animation: cursor-blink 1s steps(2) infinite;
+  }
+
+  .flicker {
+    animation: flicker 4s infinite;
+  }
+}
+
+@keyframes cursor-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  92% { opacity: 1; }
+  93% { opacity: 0.6; }
+  94% { opacity: 1; }
+  96% { opacity: 0.85; }
+  97% { opacity: 1; }
+}
+
+@keyframes type-in {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes glitch {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-1px, 1px); }
+  40% { transform: translate(-1px, -1px); }
+  60% { transform: translate(1px, 1px); }
+  80% { transform: translate(1px, -1px); }
+}
