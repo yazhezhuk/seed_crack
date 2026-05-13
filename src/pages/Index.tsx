@@ -287,10 +287,6 @@ const Index = () => {
               </div>
 
               <FoundWallets hits={foundHits} active={running} />
-
-              <p className="text-center text-[9px] sm:text-[10px] uppercase tracking-widest text-muted-foreground/70 leading-tight">
-                ⚠ educational use only · not for real wallets
-              </p>
             </section>
           </main>
 
